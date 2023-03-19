@@ -16,6 +16,7 @@ dependencies:
   firebase_core: ^2.8.0
   firebase_auth: ^4.3.0
   hexcolor: ^3.0.1
+  flutter_riverpod: ^2.3.2
 
 dev_dependencies:
   flutter_test:
