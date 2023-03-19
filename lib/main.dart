@@ -1,8 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:soranonaka/firebase_options_dev.dart' as dev;
 import 'package:soranonaka/firebase_options_prod.dart' as prod;
+
+import 'domain/app_info.dart';
+import 'presentation/app.dart';
 
 const flavor = String.fromEnvironment('FLAVOR');
 
@@ -19,6 +24,9 @@ Future<void> main() async {
     options: firebaseOptions,
   );
 
+  // パッケージ情報
+  final packageInfo = await PackageInfo.fromPlatform();
+
   // FirebaseUser を取得する
   final firebaseUser = await FirebaseAuth.instance.userChanges().first;
   print('uid = ${firebaseUser?.uid}');
@@ -28,68 +36,28 @@ Future<void> main() async {
     final uid = credential.user!.uid;
     print('Signed in: uid = $uid');
   }
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+  runApp(
+    ProviderScope(
+      overrides: [
+        // アプリ情報の上書き
+        appInfoProvider.overrideWith(
+          (ref) => AppInfo(
+            appName: packageInfo.appName,
+            packageName: packageInfo.packageName,
+            version: 'v${packageInfo.version}',
+            buildNumber: packageInfo.buildNumber,
+            copyRight: '(C)2023 Nozomi Koborinai',
+            iconImagePath: '', // TODO
+            privacyPolicyUrl: Uri.parse(
+              '', // TODO
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            termsOfServiceUrl: Uri.parse(
+              '', // TODO
             ),
-          ],
+          ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
-    );
-  }
+      ],
+      child: const App(),
+    ),
+  );
 }
