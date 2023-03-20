@@ -42,11 +42,19 @@ class LoginPage extends StatelessWidget {
                       context.goNamed(RouteConfigs.home.name),
                     },
                     style: ElevatedButton.styleFrom(
-                      foregroundColor: AppColors.darkGrey,
-                      backgroundColor: AppColors.softPink,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      backgroundColor: AppColors.white,
+                      elevation: 7.5,
+                      shadowColor: Colors.grey.withOpacity(0.75),
                     ),
-                    child: const Text(
+                    child: Text(
                       '同意してはじめる',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.darkGrey,
+                      ),
                     ),
                   ),
                 ),
