@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:soranonaka/utils/app_values.dart';
 
 /// テーマプロバイダー
@@ -27,11 +26,12 @@ final themeProvider = Provider(
       ),
       appBarTheme: AppBarTheme(
         centerTitle: true,
+        color: AppColors.skyBlue,
         titleTextStyle: TextStyle(
-          color: HexColor('#696969'),
+          color: AppColors.darkGrey,
         ),
         iconTheme: IconThemeData(
-          color: HexColor('#696969'),
+          color: AppColors.darkGrey,
         ),
       ),
     );

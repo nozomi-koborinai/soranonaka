@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:soranonaka/firebase_options_dev.dart' as dev;
@@ -23,6 +24,11 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: firebaseOptions,
   );
+
+  // 画面の向きを縦固定
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
 
   // パッケージ情報
   final packageInfo = await PackageInfo.fromPlatform();
