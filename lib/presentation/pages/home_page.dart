@@ -1,60 +1,95 @@
-import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gap/gap.dart';
+import 'package:soranonaka/presentation/pages/current_weather_page.dart';
 import 'package:soranonaka/utils/app_values.dart';
+import 'package:stylish_bottom_bar/model/bar_items.dart';
+import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
 
-// ホーム画面
-class HomePage extends ConsumerWidget {
+/// ホーム画面
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  var currentIndex = 0;
+  final controller = PageController(initialPage: 0);
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final controller = PageController();
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('ロゴ'),
-      ),
-      body: Container(
-        color: AppColors.skyBlue,
-        child: Column(
-          children: [
-            Expanded(
-              flex: 2,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: AppColors.white,
-                    borderRadius: BorderRadius.circular(30.0),
-                  ),
-                ),
-              ),
+      extendBody: true,
+      bottomNavigationBar: StylishBottomBar(
+        backgroundColor: AppColors.skyBlue,
+        items: [
+          BottomBarItem(
+            icon: const Icon(Icons.cloud_outlined),
+            selectedIcon: const Icon(Icons.cloud_outlined),
+            selectedColor: AppColors.blue,
+            borderColor: AppColors.blue,
+            backgroundColor: AppColors.white,
+            title: const Text('イマノテンキ'),
+          ),
+          BottomBarItem(
+            icon: const Icon(Icons.favorite_border),
+            selectedIcon: const Icon(Icons.favorite_border),
+            selectedColor: Colors.blue,
+            borderColor: Colors.blue,
+            backgroundColor: AppColors.white,
+            title: const Text('ジブンノキモチ'),
+          ),
+          BottomBarItem(
+            icon: const Icon(
+              Icons.person_2_outlined,
             ),
-            const Gap(20),
-            Expanded(
-              flex: 3,
-              child: Swiper(
-                itemBuilder: (context, index) {
-                  return Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    color: AppColors.white,
-                    child: Column(
-                      children: const [],
-                    ),
-                  );
-                },
-                loop: true,
-                autoplay: true,
-                itemCount: 5,
-                viewportFraction: 0.75,
-                scale: 0.9,
-                onIndexChanged: (value) => {},
-              ),
-            ),
-          ],
+            selectedIcon: const Icon(Icons.person_outlined),
+            backgroundColor: Colors.white,
+            selectedColor: Colors.blue,
+            borderColor: AppColors.blue,
+            title: const Text('プロフィール'),
+          ),
+        ],
+        hasNotch: true,
+        fabLocation: StylishBarFabLocation.end,
+        currentIndex: currentIndex,
+        onTap: (index) {
+          setState(
+            () {
+              controller.jumpToPage(index);
+              currentIndex = index;
+            },
+          );
+        },
+        option: AnimatedBarOptions(
+          barAnimation: BarAnimation.transform3D,
+          iconStyle: IconStyle.animated,
+          opacity: 0.3,
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: AppColors.skyBlue,
+        child: Icon(
+          Icons.edit,
+          color: AppColors.white,
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      body: PageView(
+        controller: controller,
+        children: const [
+          CurrentWeatherPage(),
+          CurrentWeatherPage(),
+          CurrentWeatherPage(),
+        ],
       ),
     );
   }

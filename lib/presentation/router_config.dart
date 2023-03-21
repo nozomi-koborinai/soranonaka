@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:soranonaka/presentation/components/bottom_bar.dart';
+import 'package:soranonaka/presentation/pages/home_page.dart';
 import 'package:soranonaka/presentation/pages/login_page.dart';
 
 // GoRoute.path/name プロパティの設定値を保持する列挙体
@@ -33,7 +33,8 @@ final routerConfigProvider = Provider<GoRouter>(
           GoRoute(
             path: RouteConfigs.home.path,
             name: RouteConfigs.home.name,
-            builder: (BuildContext context, GoRouterState state) => BottomBar(),
+            builder: (BuildContext context, GoRouterState state) =>
+                const HomePage(),
           ),
         ],
       ),
