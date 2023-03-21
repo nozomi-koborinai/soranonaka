@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,6 +14,17 @@ class CurrentWeatherPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     SizeConfig.instance.init(context);
+    final random = Random();
+    double randomValue() => (random.nextDouble() * 2) - 1;
+    // 消す
+    final texts = <String>[
+      '成長',
+      '失敗',
+      '楽しい',
+      '友人',
+      'aaaaaa',
+    ];
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('ロゴ'),
@@ -42,8 +55,39 @@ class CurrentWeatherPage extends ConsumerWidget {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     color: Colors.white,
-                    child: Column(
-                      children: const [],
+                    child: Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        for (final text in texts)
+                          Opacity(
+                            opacity: 0.4,
+                            child: Align(
+                              alignment: Alignment(
+                                randomValue(),
+                                randomValue(),
+                              ),
+                              child: SizedBox(
+                                height: 75,
+                                width: 120,
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  color: AppColors.orange,
+                                  child: Container(
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      text,
+                                      style: const TextStyle(
+                                        color: AppColors.black,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                      ],
                     ),
                   );
                 },

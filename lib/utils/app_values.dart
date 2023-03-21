@@ -10,6 +10,7 @@ class AppColors {
   static final Color grey = HexColor('#B3B3B3');
   static final Color blue = HexColor('#0D99FF');
   static final Color white = HexColor('#ffffff');
+  static const Color black = Colors.black;
 }
 
 /// アプリ内共通で使用するメッセージ
