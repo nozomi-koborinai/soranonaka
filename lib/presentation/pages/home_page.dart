@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soranonaka/presentation/pages/current_weather_page.dart';
+import 'package:soranonaka/presentation/pages/my_feelings_page.dart';
+import 'package:soranonaka/presentation/pages/profile_page.dart';
 import 'package:soranonaka/utils/app_values.dart';
 import 'package:stylish_bottom_bar/model/bar_items.dart';
 import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
@@ -80,6 +82,7 @@ class _HomePageState extends State<HomePage> {
         child: Icon(
           Icons.edit,
           color: AppColors.white,
+          size: 30,
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
@@ -92,8 +95,8 @@ class _HomePageState extends State<HomePage> {
         },
         children: const [
           CurrentWeatherPage(),
-          CurrentWeatherPage(),
-          CurrentWeatherPage(),
+          MyFeelingsPage(),
+          ProfilePage(),
         ],
       ),
     );

@@ -19,10 +19,10 @@ class CurrentWeatherPage extends ConsumerWidget {
     // 消す
     final texts = <String>[
       '成長',
-      '失敗',
+      '食生活の向上',
       '楽しい',
       '友人',
-      'aaaaaa',
+      'キャンプ',
     ];
 
     return Scaffold(
@@ -45,9 +45,9 @@ class CurrentWeatherPage extends ConsumerWidget {
                 ),
               ),
             ),
-            const Gap(15),
+            const Gap(5),
             SizedBox(
-              height: SizeConfig.instance.blockSizeVertical * 39,
+              height: SizeConfig.instance.blockSizeVertical * 40,
               child: Swiper(
                 itemBuilder: (context, index) {
                   return Card(
@@ -92,9 +92,9 @@ class CurrentWeatherPage extends ConsumerWidget {
                   );
                 },
                 loop: true,
-                autoplay: false, // TODO：trueにする
+                autoplay: false,
                 itemCount: 5,
-                viewportFraction: 0.75,
+                viewportFraction: 0.8,
                 scale: 0.9,
                 onIndexChanged: (value) => {},
               ),
