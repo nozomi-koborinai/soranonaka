@@ -95,9 +95,9 @@ class _HomePageState extends State<HomePage> {
               currentIndex = value;
             });
           },
-          children: const [
-            CurrentWeatherPage(),
-            MyFeelingsPage(),
+          children: [
+            const CurrentWeatherPage(),
+            const MyFeelingsPage(),
             ProfilePage(),
           ],
         ),
