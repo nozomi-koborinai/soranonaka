@@ -12,7 +12,7 @@ class ProfilePage extends StatelessWidget {
         title: const Text('ロゴ'),
       ),
       body: Container(
-        color: AppColors.orange,
+        color: AppColors.skyBlue,
       ),
     );
   }
