@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:soranonaka/presentation/pages/feelings_post_page.dart';
 import 'package:soranonaka/presentation/pages/home_page.dart';
 import 'package:soranonaka/presentation/pages/login_page.dart';
 
@@ -13,6 +14,10 @@ enum RouteConfigs {
   home(
     'home',
     'home',
+  ),
+  feelingsPost(
+    'feelings_post',
+    'feelingsPost',
   );
 
   const RouteConfigs(this.path, this.name);
@@ -35,6 +40,16 @@ final routerConfigProvider = Provider<GoRouter>(
             name: RouteConfigs.home.name,
             builder: (BuildContext context, GoRouterState state) =>
                 const HomePage(),
+            routes: <RouteBase>[
+              GoRoute(
+                path: RouteConfigs.feelingsPost.path,
+                name: RouteConfigs.feelingsPost.name,
+                pageBuilder: (context, state) => const MaterialPage(
+                  fullscreenDialog: true,
+                  child: FeelingsPostPage(),
+                ),
+              ),
+            ],
           ),
         ],
       ),
