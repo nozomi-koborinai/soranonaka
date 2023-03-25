@@ -17,11 +17,7 @@ class LoginPage extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [
-              AppColors.skyBlue,
-              AppColors.blue
-              // HexColor('#02B0E5'),
-            ],
+            colors: [AppColors.skyBlue, AppColors.blue],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -31,11 +27,7 @@ class LoginPage extends StatelessWidget {
           children: [
             Column(
               children: [
-                Text(
-                  'ここらへんにアイコン',
-                  style: TextStyle(color: AppColors.white),
-                ),
-                const Gap(200),
+                Image.asset('assets/images/soranonaka_logo.png'),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 56),
                   child: ElevatedButton(

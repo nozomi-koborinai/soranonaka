@@ -79,8 +79,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () =>
-            GoRouter.of(context).goNamed(RouteConfigs.feelingsPost.name),
+        onPressed: () => context.goNamed(RouteConfigs.feelingsPost.name),
         backgroundColor: AppColors.skyBlue,
         child: Icon(
           Icons.edit,
