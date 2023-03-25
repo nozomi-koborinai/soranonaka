@@ -34,14 +34,18 @@ class CurrentWeatherPage extends ConsumerWidget {
           color: AppColors.skyBlue,
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                child: SizedBox(
-                  height: SizeConfig.instance.blockSizeVertical * 35,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: AppColors.white,
-                      borderRadius: BorderRadius.circular(30.0),
+              Opacity(
+                opacity: 0.8,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                  child: SizedBox(
+                    height: SizeConfig.instance.blockSizeVertical * 35,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: AppColors.white,
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      child: Image.asset('assets/images/cloudy.png'),
                     ),
                   ),
                 ),
