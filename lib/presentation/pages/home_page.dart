@@ -88,18 +88,24 @@ class _HomePageState extends State<HomePage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       body: Container(
         color: AppColors.skyBlue,
-        child: PageView(
-          controller: controller,
-          onPageChanged: (value) {
-            setState(() {
-              currentIndex = value;
-            });
-          },
-          children: [
-            const CurrentWeatherPage(),
-            const MyFeelingsPage(),
-            ProfilePage(),
-          ],
+        child: SafeArea(
+          top: false,
+          left: false,
+          right: false,
+          bottom: true,
+          child: PageView(
+            controller: controller,
+            onPageChanged: (value) {
+              setState(() {
+                currentIndex = value;
+              });
+            },
+            children: const [
+              CurrentWeatherPage(),
+              MyFeelingsPage(),
+              ProfilePage(),
+            ],
+          ),
         ),
       ),
     );
