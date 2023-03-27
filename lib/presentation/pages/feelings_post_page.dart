@@ -13,7 +13,7 @@ class FeelingsPostPage extends ConsumerWidget {
     SizeConfig.instance.init(context);
 
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      backgroundColor: AppColors.skyBlue,
       appBar: AppBar(
         actions: [
           Padding(
