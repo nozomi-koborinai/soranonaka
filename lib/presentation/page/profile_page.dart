@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:soranonaka/presentation/components/custom_text_field.dart';
-import 'package:soranonaka/utils/app_values.dart';
+import 'package:soranonaka/presentation/component/custom_text_field.dart';
+import 'package:soranonaka/util/app_values.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});

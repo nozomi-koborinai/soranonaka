@@ -2,8 +2,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../application/url_launcher_service.dart';
 import '../../domain/app_info.dart';
+import '../../usecase/url_launcher_service.dart';
 import 'anchor_text.dart';
 
 /// 利用規約とプライバシーポリシーをまとめたウィジェット

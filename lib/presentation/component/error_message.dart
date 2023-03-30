@@ -1,3 +1,4 @@
+
 import '../../domain/exceptions.dart';
 
 extension ObjectHelper on Object {

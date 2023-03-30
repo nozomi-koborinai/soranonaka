@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:soranonaka/presentation/size_config.dart';
-import 'package:soranonaka/utils/app_values.dart';
+import 'package:soranonaka/util/app_values.dart';
 
 // イマノテンキ画面
 class CurrentWeatherPage extends ConsumerWidget {

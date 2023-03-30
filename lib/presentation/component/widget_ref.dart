@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:soranonaka/presentation/components/error_message.dart';
+import 'package:soranonaka/presentation/component/error_message.dart';
 
 import 'dialog.dart';
 import 'loading.dart';

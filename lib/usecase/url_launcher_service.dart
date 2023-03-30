@@ -1,10 +1,10 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:soranonaka/application/url_launcher_exception.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'state/url_launch_data.dart';
 import 'state/url_launch_result.dart';
+import 'url_launcher_exception.dart';
 
 /// URL起動サービスプロバイダー
 final urlLauncherServiceProvider = Provider(

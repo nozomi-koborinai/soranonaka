@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../utils/app_values.dart';
+import '../../util/app_values.dart';
 
 /// アプリ内共通で使用するテキストフィールド
 class CustomTextField extends StatefulWidget {
