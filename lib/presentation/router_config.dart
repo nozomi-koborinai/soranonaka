@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:soranonaka/presentation/pages/feelings_post_page.dart';
-import 'package:soranonaka/presentation/pages/home_page.dart';
-import 'package:soranonaka/presentation/pages/login_page.dart';
+import 'package:soranonaka/presentation/page/feelings_post_page.dart';
+import 'package:soranonaka/presentation/page/home_page.dart';
+
+import 'page/login_page.dart';
 
 // GoRoute.path/name プロパティの設定値を保持する列挙体
 enum RouteConfigs {

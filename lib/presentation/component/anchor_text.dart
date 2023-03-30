@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:soranonaka/utils/app_values.dart';
+import 'package:soranonaka/util/app_values.dart';
 
 /// アンカーテキスト
 class AnchorText extends StatelessWidget {

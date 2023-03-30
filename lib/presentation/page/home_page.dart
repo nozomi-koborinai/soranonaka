@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:soranonaka/presentation/pages/current_weather_page.dart';
-import 'package:soranonaka/presentation/pages/my_feelings_page.dart';
-import 'package:soranonaka/presentation/pages/profile_page.dart';
+import 'package:soranonaka/presentation/page/current_weather_page.dart';
+import 'package:soranonaka/presentation/page/profile_page.dart';
 import 'package:soranonaka/presentation/router_config.dart';
-import 'package:soranonaka/utils/app_values.dart';
+import 'package:soranonaka/util/app_values.dart';
 import 'package:stylish_bottom_bar/model/bar_items.dart';
 import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
+
+import 'my_feelings_page.dart';
 
 /// ホーム画面
 class HomePage extends StatefulWidget {

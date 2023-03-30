@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:soranonaka/presentation/router_config.dart';
 import 'package:soranonaka/presentation/theme.dart';
 
-import 'components/loading.dart';
-import 'components/scaffold_messenger.dart';
+import 'component/loading.dart';
+import 'component/scaffold_messenger.dart';
 
 class App extends ConsumerWidget {
   const App({Key? key}) : super(key: key);

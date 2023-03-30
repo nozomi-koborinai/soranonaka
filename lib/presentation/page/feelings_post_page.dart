@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:soranonaka/presentation/size_config.dart';
-import 'package:soranonaka/utils/app_values.dart';
+import 'package:soranonaka/util/app_values.dart';
 
 // キモチ投稿画面
 class FeelingsPostPage extends ConsumerWidget {
@@ -13,7 +13,7 @@ class FeelingsPostPage extends ConsumerWidget {
     SizeConfig.instance.init(context);
 
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      backgroundColor: AppColors.skyBlue,
       appBar: AppBar(
         actions: [
           Padding(

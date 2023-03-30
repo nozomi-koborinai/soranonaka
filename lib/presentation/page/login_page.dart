@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:soranonaka/presentation/router_config.dart';
-import 'package:soranonaka/utils/app_values.dart';
+import 'package:soranonaka/util/app_values.dart';
 
-import '../components/agreement.dart';
+import '../component/agreement.dart';
 
 /// ログイン画面
 class LoginPage extends StatelessWidget {
