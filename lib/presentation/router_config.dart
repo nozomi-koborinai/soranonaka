@@ -13,11 +13,11 @@ enum RouteConfigs {
     'login',
   ),
   home(
-    'home',
+    '/home',
     'home',
   ),
   feelingsPost(
-    'feelings_post',
+    '/feelings-post',
     'feelingsPost',
   );
 
