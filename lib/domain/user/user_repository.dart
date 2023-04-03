@@ -9,6 +9,11 @@ final userRepositoryProvider = Provider<UserRepository>(
   (ref) => throw UnimplementedError('Provider was not initialized'),
 );
 
+/// ログイン中かどうかを返すプロバイダー
+final loggedInProvider = StreamProvider(
+  (ref) => ref.watch(userRepositoryProvider).loggedInChanges(),
+);
+
 /// ユーザーリポジトリのインターフェース
 abstract class UserRepository {
   Stream<bool> loggedInChanges();
