@@ -1,11 +1,13 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:soranonaka/domain/user/user_repository.dart';
 import 'package:soranonaka/firebase_options_dev.dart' as dev;
 import 'package:soranonaka/firebase_options_prod.dart' as prod;
+import 'package:soranonaka/infrastructure/firebase.dart';
+import 'package:soranonaka/infrastructure/user/user_repository_impl.dart';
 
 import 'domain/app_info.dart';
 import 'presentation/app.dart';
@@ -33,15 +35,6 @@ Future<void> main() async {
   // パッケージ情報
   final packageInfo = await PackageInfo.fromPlatform();
 
-  // FirebaseUser を取得する
-  final firebaseUser = await FirebaseAuth.instance.userChanges().first;
-  print('uid = ${firebaseUser?.uid}');
-  if (firebaseUser == null) {
-    // 未サインインなら匿名ユーザーでサインインする
-    final credential = await FirebaseAuth.instance.signInAnonymously();
-    final uid = credential.user!.uid;
-    print('Signed in: uid = $uid');
-  }
   runApp(
     ProviderScope(
       overrides: [
@@ -61,6 +54,17 @@ Future<void> main() async {
               '', // TODO
             ),
           ),
+        ),
+        // 未実装プロバイダーの上書き
+        userRepositoryProvider.overrideWith(
+          (ref) {
+            final repository = UserRepositoryImpl(
+              auth: ref.watch(firebaseAuthProvider),
+              userColletionRef: ref.watch(userCollectionRefProvider),
+            );
+            ref.onDispose(repository.dispose);
+            return repository;
+          },
         ),
       ],
       child: const App(),
