@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:soranonaka/presentation/page/feelings_post_page.dart';
 import 'package:soranonaka/presentation/page/home_page.dart';
 
+import '../domain/user/user_repository.dart';
 import 'page/login_page.dart';
 
 // GoRoute.path/name プロパティの設定値を保持する列挙体
@@ -17,7 +18,7 @@ enum RouteConfigs {
     'home',
   ),
   feelingsPost(
-    'feelings_post',
+    'feelings-post',
     'feelingsPost',
   );
 
@@ -55,5 +56,26 @@ final routerConfigProvider = Provider<GoRouter>(
         ],
       ),
     ],
+    redirect: (context, state) {
+      final loggedIn = ref.watch(loggedInProvider).value;
+      // 表示直後はログイン状態が未確定（loggedIn が null）
+      // そのため保留の意味で null を返却
+      if (loggedIn == null) {
+        return null;
+      }
+      // ログイン済み かつ 現在の画面 = ログイン画面 なら ホーム画面にリダイレクト
+      if (loggedIn) {
+        if (state.location == RouteConfigs.login.path) {
+          return RouteConfigs.home.path;
+        }
+        return null;
+      }
+      // 未ログインでも表示できる画面ならリダイレクトしない
+      if (state.location == RouteConfigs.login.path) {
+        return null;
+      }
+      // 未ログインならログイン画面にリダイレクトする
+      return RouteConfigs.login.path;
+    },
   ),
 );

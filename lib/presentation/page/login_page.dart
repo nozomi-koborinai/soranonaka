@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
-import 'package:go_router/go_router.dart';
-import 'package:soranonaka/presentation/router_config.dart';
+import 'package:soranonaka/usecase/user/login_usecase.dart';
 import 'package:soranonaka/util/app_values.dart';
 
 import '../component/agreement.dart';
 
 /// ログイン画面
-class LoginPage extends StatelessWidget {
+class LoginPage extends ConsumerWidget {
   const LoginPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -31,9 +31,7 @@ class LoginPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 56),
                   child: ElevatedButton(
-                    onPressed: () => {
-                      context.goNamed(RouteConfigs.home.name),
-                    },
+                    onPressed: () => ref.read(loginUseCaseProvider).login(),
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
