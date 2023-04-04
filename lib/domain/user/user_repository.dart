@@ -14,12 +14,17 @@ final loggedInProvider = StreamProvider(
   (ref) => ref.watch(userRepositoryProvider).loggedInChanges(),
 );
 
+/// ユーザーStreamプロバイダー
+final userStreamProvider = StreamProvider(
+  (ref) => ref.watch(userRepositoryProvider).userChanges(),
+  name: 'userStreamProvider',
+);
+
 /// ユーザーリポジトリのインターフェース
 abstract class UserRepository {
   Stream<bool> loggedInChanges();
+  Stream<User?> userChanges();
   Future<void> login();
   Future<void> logout();
-  Future<void> add();
-  Future<void> delete();
   Future<void> update(User user);
 }

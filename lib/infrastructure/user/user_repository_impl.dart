@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:soranonaka/domain/user/user_repository.dart';
 
+import '../../domain/exceptions.dart';
 import '../../domain/user/entity/user.dart';
 import 'document/user_document.dart';
 
@@ -79,21 +80,17 @@ class UserRepositoryImpl implements UserRepository {
       );
 
   @override
-  Future<void> add() {
-    // TODO: implement add
-    throw UnimplementedError();
+  Stream<User?> userChanges() {
+    return userChangesController.stream;
   }
 
   @override
-  Future<void> delete() {
-    // TODO: implement delete
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<void> login() {
-    // TODO: implement login
-    throw UnimplementedError();
+  Future<void> login() async {
+    try {
+      await auth.signInAnonymously();
+    } on firebase_auth.FirebaseAuthException catch (e) {
+      throw e.toAuthException();
+    }
   }
 
   @override
@@ -120,4 +117,44 @@ extension on UserDocument {
         createdAt: createdAt,
         updatedAt: updatedAt,
       );
+}
+
+extension on firebase_auth.FirebaseAuthException {
+  /// FirebaseAuthException => AuthException
+  AuthException toAuthException() {
+    switch (code) {
+      case 'invalid-email':
+        return AuthException.invalidEmail();
+      case 'wrong-password':
+        return AuthException.wrongPassword();
+      case 'weak-password':
+        return AuthException.weakPassword();
+      case 'user-not-found':
+        return AuthException.userNotFound();
+      case 'user-disabled':
+        return AuthException.userDisabled();
+      case 'too-many-requests':
+        return AuthException.tooManyRequests();
+      case 'operation-not-allowed':
+        return AuthException.operationNotAllowed();
+      case 'network-request-failed':
+        return AuthException.networkRequestFailed();
+      case 'email-already-in-use':
+      case 'credential-already-in-use':
+        return AuthException.emailAlreadyInUse();
+      case 'user-mismatch':
+        return AuthException.userMismatch();
+      case 'invalid-action-code':
+        return AuthException.invalidActionCode();
+      case 'invalid-credential':
+        return AuthException.invalidCredential();
+      case 'requires-recent-login':
+        return AuthException.requiresRecentLogin();
+      case 'internal-error':
+      case 'unknown':
+        return AuthException.unknown();
+      default:
+        return AuthException.unknown();
+    }
+  }
 }
