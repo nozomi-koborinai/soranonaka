@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -25,6 +27,24 @@ enum RouteConfigs {
   const RouteConfigs(this.path, this.name);
   final String path;
   final String name;
+}
+
+/// ログイン状態の変化を通知する
+class GoRouterRefreshNotifier extends ChangeNotifier {
+  GoRouterRefreshNotifier(Stream<dynamic> stream) {
+    notifyListeners();
+    _subscription = stream.asBroadcastStream().listen(
+          (dynamic _) => notifyListeners(),
+        );
+  }
+
+  late final StreamSubscription<dynamic> _subscription;
+
+  @override
+  void dispose() {
+    _subscription.cancel();
+    super.dispose();
+  }
 }
 
 // GoRouterの設定
@@ -77,5 +97,8 @@ final routerConfigProvider = Provider<GoRouter>(
       // 未ログインならログイン画面にリダイレクトする
       return RouteConfigs.login.path;
     },
+    refreshListenable: GoRouterRefreshNotifier(
+      ref.watch(loggedInProvider.stream),
+    ),
   ),
 );
