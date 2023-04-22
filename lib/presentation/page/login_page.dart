@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
-import 'package:soranonaka/usecase/user/login_usecase.dart';
+import 'package:go_router/go_router.dart';
+import 'package:soranonaka/presentation/router_config.dart';
 import 'package:soranonaka/util/app_values.dart';
 
 import '../component/agreement.dart';
@@ -31,7 +32,11 @@ class LoginPage extends ConsumerWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 56),
                   child: ElevatedButton(
-                    onPressed: () => ref.read(loginUseCaseProvider).login(),
+                    onPressed: () {
+                      // TODO：個人開発発表会終わったら実装
+                      // ref.read(loginUseCaseProvider).login();
+                      context.goNamed(RouteConfigs.home.name);
+                    },
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
