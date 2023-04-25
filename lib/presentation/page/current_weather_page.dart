@@ -35,18 +35,12 @@ class CurrentWeatherPage extends ConsumerWidget {
           child: Column(
             children: [
               Opacity(
-                opacity: 0.8,
+                opacity: 0.7,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 30.0),
                   child: SizedBox(
                     height: SizeConfig.instance.blockSizeVertical * 35,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: AppColors.white,
-                        borderRadius: BorderRadius.circular(30.0),
-                      ),
-                      child: Image.asset('assets/images/cloudy.png'),
-                    ),
+                    child: Image.asset('assets/images/cloudy.png'),
                   ),
                 ),
               ),
